@@ -1,112 +1,190 @@
-# Recanto das Araras — Gestão Condominial
+# Recanto das Araras
 
-Sistema web de portaria e administração desenvolvido em PHP e MySQL. Este repositório apresenta o código do projeto para avaliação técnica e execução independente, sem dados do condomínio e sem ligação com o banco original.
+Sistema web de gestão condominial para organizar a rotina de portaria e administração: moradores, veículos, visitantes, encomendas e avisos em um único painel.
+
+Desenvolvido em **PHP, MySQL, JavaScript e CSS**, o projeto inclui perfis de acesso, auditoria de operações e processamento de notificações por e-mail.
+
+> Este repositório é uma versão de portfólio. A instalação utiliza um banco independente, inicialmente vazio, sem dados reais de moradores. Para testar, execute o projeto localmente seguindo as instruções abaixo.
 
 ## Funcionalidades
 
-- Cadastro e consulta de moradores, veículos e visitantes.
-- Controle de presença de visitantes e retirada de encomendas.
-- Publicação de avisos.
-- Perfis de administração e portaria.
-- Gestão de usuários, alteração de senha e auditoria de operações.
-- Fila de notificações por e-mail, configurada opcionalmente pelo operador.
+- **Moradores e veículos:** cadastro, edição, consulta e associação dos registros às unidades.
+- **Visitantes:** registro de visitas e controle de entrada e saída.
+- **Encomendas:** registro de recebimento e acompanhamento de retirada.
+- **Avisos:** publicação de comunicados com nível de urgência.
+- **Usuários:** perfis de administração e portaria, ativação de acessos e alteração de senha.
+- **Auditoria:** histórico de operações e transições de status.
+- **Notificações:** fila de envio de e-mails com processamento separado das requisições web.
 
-## Tecnologias e organização
+## Tecnologias
 
-PHP 8.2+, MySQL/MariaDB, MySQLi, Composer, PHPMailer, JavaScript e CSS.
-
-| Pasta | Responsabilidade |
+| Camada | Tecnologias |
 | --- | --- |
-| app | Telas, validações, consultas e regras de negócio |
-| bootstrap | Inicialização, sessão e autorização |
-| config | Leitura das configurações do ambiente |
-| database | Estrutura e migrações; sem cópia de registros reais |
-| public | Entrada HTTP e recursos públicos |
-| routes | Mapa das rotas |
-| bin | Instalação e comandos administrativos |
-| tests | Validações e integração |
-| storage | Diretórios locais vazios; conteúdo privado ignorado pelo Git |
+| Backend | PHP 8.2+ e MySQLi |
+| Banco de dados | MySQL / MariaDB |
+| Interface | HTML, CSS e JavaScript |
+| Dependências | Composer e PHPMailer |
+| Ambiente local com Docker | PHP 8.3, Apache e MySQL 8.4 |
+| Integração contínua | GitHub Actions: sintaxe PHP e validações de entrada |
 
-## Executar localmente com Docker
+## Executar com Docker
 
-Requisitos: Docker com Docker Compose. Execute os comandos na pasta deste repositório.
+### 1. Obter o projeto
 
-1. Copie `.env.example` para `.env` e substitua os dois valores por senhas fortes e diferentes. No PowerShell:
+Instale o Docker com suporte ao Docker Compose e mantenha-o em execução. Com o Git instalado, abra um terminal e execute:
 
-   ```powershell
-   Copy-Item .env.example .env
-   notepad .env
-   ```
+```sh
+git clone https://github.com/ruuuuuizzzz/recanto-das-araras.git
+cd recanto-das-araras
+```
 
-2. Construa e inicie os serviços:
+Também é possível baixar em **Code → Download ZIP** no GitHub. Extraia o arquivo e abra o terminal na pasta que contém `compose.yaml`.
 
-   ```sh
-   docker compose up -d --build
-   ```
+Execute os próximos comandos nessa pasta. Não é necessário instalar PHP, MySQL ou Composer no computador ao usar Docker.
 
-   Aguarde o comando terminar sem erros antes de continuar. Se aparecer `port is already allocated`, a porta 8080 está ocupada: altere `127.0.0.1:8080:80` para `127.0.0.1:8081:80` em `compose.yaml` e execute o comando novamente. Nesse caso, o endereço de acesso será http://localhost:8081.
+### 2. Configurar o ambiente
 
-3. Prepare as tabelas do banco vazio:
+Copie `.env.example` para `.env`. No PowerShell:
 
-   ```sh
-   docker compose exec app php bin/install.php
-   docker compose exec app php bin/migrate.php
-   ```
+```powershell
+Copy-Item .env.example .env
+notepad .env
+```
 
-4. **Crie seu login de administrador antes de abrir o sistema:**
+No Linux ou macOS, use `cp .env.example .env` e abra o arquivo no editor de sua preferência.
 
-   ```sh
-   docker compose exec app php bin/create-admin.php "Administrador Demo" admin@example.com
-   ```
+Substitua os valores de `DB_PASS` e `DB_ROOT_PASS` por duas senhas fortes e diferentes. Salve antes de continuar. Essas senhas são exclusivas do banco de dados; o login da aplicação será criado no passo 5.
 
-   Quando aparecer o pedido de senha no terminal, digite uma senha de pelo menos 8 caracteres e pressione Enter. Aguarde a mensagem `Administrador criado.`. A entrada da senha fica visível no terminal; utilize um terminal privado. Faça isso apenas uma vez para esse e-mail em cada instalação.
+### 3. Iniciar os serviços
 
-5. Acesse http://localhost:8080 (ou http://localhost:8081, se você alterou a porta) e preencha a tela de login:
+```sh
+docker compose up -d --build
+```
 
-   | Campo | O que preencher |
-   | --- | --- |
-   | E-mail | `admin@example.com`, se você usou o comando acima |
-   | Senha | A senha que você escolheu e digitou no terminal no passo 4 |
+A primeira execução baixa as imagens e instala as dependências. Aguarde terminar sem erros antes de executar os próximos comandos.
 
-   Você pode substituir `admin@example.com` pelo e-mail de sua preferência no comando; nesse caso, use esse mesmo e-mail no login. Não é necessário receber um e-mail de confirmação para entrar.
+### 4. Preparar o banco
 
-### Por que preciso criar um login?
+Execute um comando por vez:
 
-Cada pessoa que baixa este projeto executa sua própria instalação, com banco independente. **Não existe conta de demonstração pré-cadastrada nem senha padrão compartilhada.** O comando `create-admin.php` cria o primeiro usuário no banco da sua instalação.
+```sh
+docker compose exec app php bin/install.php
+docker compose exec app php bin/migrate.php
+```
 
-Se você já abriu o sistema e está na tela de login, mas ainda não criou um usuário, execute o passo 4 no terminal, dentro da pasta do projeto, e depois entre com o e-mail e a senha definidos por você. As senhas `DB_PASS` e `DB_ROOT_PASS` do arquivo `.env` são do banco de dados; elas não são a senha do login do sistema.
+Esses comandos criam a estrutura de tabelas e aplicam as migrações. Nenhum dado real ou usuário padrão é importado.
 
-O link deste repositório no GitHub permite consultar e baixar o código. Para visitantes testarem o sistema diretamente por um link, sem instalar nada, é necessário disponibilizar uma demonstração hospedada separadamente.
+### 5. Criar o primeiro usuário
 
-A aplicação começa sem moradores ou outros registros. Cadastre somente exemplos fictícios. O e-mail não vem configurado e nenhum agendador é instalado automaticamente. O banco fica em volume Docker próprio, sem porta publicada. O site fica disponível somente no computador local.
+```sh
+docker compose exec app php bin/create-admin.php "Administrador Demo" admin@example.com
+```
 
-Para encerrar, use `docker compose down`. Os registros permanecem no volume. `docker compose down -v` apaga definitivamente o banco desta demonstração.
+Quando o terminal solicitar, digite uma senha de **pelo menos 8 caracteres** e pressione Enter. Aguarde a mensagem `Administrador criado.`. A senha digitada fica visível no terminal.
+
+O nome e o e-mail são exemplos: você pode substituí-los no comando. O endereço `admin@example.com` funciona como identificador de acesso e não exige confirmação por e-mail. Crie esse usuário apenas uma vez para cada instalação.
+
+### 6. Acessar o sistema
+
+Abra [http://localhost:8080](http://localhost:8080) e entre com:
+
+| Campo | Valor |
+| --- | --- |
+| E-mail | `admin@example.com`, ou o endereço escolhido no passo 5 |
+| Senha | A senha digitada no terminal no passo 5 |
+
+**Não existe senha padrão nem conta de demonstração pré-cadastrada.** Cada instalação possui seus próprios usuários. As senhas do arquivo `.env` não são usadas na tela de login.
+
+Após entrar, cadastre dados fictícios para explorar os módulos. A administração pode criar outros usuários pela tela **Usuários**.
+
+### Encerrar e iniciar novamente
+
+```sh
+docker compose down
+docker compose up -d
+```
+
+O primeiro comando encerra os serviços; o segundo inicia novamente. Os usuários e registros permanecem no volume do banco, portanto não é necessário repetir a instalação ou criar o administrador novamente.
+
+> `docker compose down -v` remove também o volume e apaga definitivamente o banco local.
+
+## Solução de problemas
+
+| Situação | Como resolver |
+| --- | --- |
+| `port is already allocated` | A porta 8080 está ocupada. Em `compose.yaml`, troque `127.0.0.1:8080:80` por `127.0.0.1:8081:80`, execute `docker compose up -d --build` e acesse http://localhost:8081. |
+| `service "app" is not running` | Execute `docker compose ps` e confira o erro de inicialização. Resolva-o antes de executar os comandos de instalação. Para consultar os logs, use `docker compose logs app db`. |
+| O sistema abriu no login, mas não há usuário | Execute o comando do passo 5 e entre com o e-mail e a senha que definiu. |
+| Não conecta ao Docker | Verifique se o Docker está iniciado e disponível no terminal. |
+| As notificações não chegam | O SMTP e o processamento da fila são opcionais e precisam de configuração própria. Consulte o guia de operação. |
 
 ## Instalação sem Docker
 
-1. Instale PHP 8.2+ com MySQLi, MySQL/MariaDB e Composer.
-2. Crie um banco vazio e um usuário exclusivo para ele. Para a instalação, o usuário precisa criar e alterar as tabelas nesse banco; restrinja as permissões após as migrações conforme sua operação.
-3. Configure `DB_HOST`, `DB_USER`, `DB_PASS`, `DB_NAME` no ambiente do processo PHP. Configure `APP_BASE_URL=/` para executar na raiz. O PHP não lê `.env` automaticamente; esse arquivo é utilizado apenas pelo Docker Compose.
-4. Execute `composer install`, `php bin/install.php`, `php bin/migrate.php` e `php bin/create-admin.php "Administrador Demo" admin@example.com`.
-5. Inicie com `composer serve` e acesse http://localhost:8000. Entre com `admin@example.com` (ou o e-mail informado no comando de criação) e a senha que você digitou no terminal ao criar o administrador. Não utilize a senha do banco de dados.
+Requisitos: PHP 8.2+ com MySQLi, Composer e MySQL/MariaDB.
 
-Na hospedagem Apache, configure a raiz do site para `public` e encaminhe as rotas para `public/index.php`. Veja [operação](docs/operations.md). GitHub armazena o código; para executar o backend PHP é necessária uma hospedagem compatível.
+1. Obtenha o projeto e execute `composer install` na raiz.
+2. Crie um banco vazio e um usuário exclusivo com permissão para criar e alterar as tabelas desse banco durante a instalação.
+3. Defina as variáveis abaixo no ambiente do processo PHP:
 
-## Verificação
+   | Variável | Finalidade |
+   | --- | --- |
+   | `DB_HOST` | Endereço do servidor MySQL |
+   | `DB_NAME` | Nome do banco criado |
+   | `DB_USER` | Usuário exclusivo do banco |
+   | `DB_PASS` | Senha desse usuário |
+   | `APP_BASE_URL` | `/` para executar na raiz do servidor local |
+
+   Nessa modalidade, o PHP não carrega `.env` automaticamente. O arquivo `.env` fornecido é utilizado pelo Docker Compose.
+
+4. Prepare as tabelas e crie seu acesso:
+
+   ```sh
+   php bin/install.php
+   php bin/migrate.php
+   php bin/create-admin.php "Administrador Demo" admin@example.com
+   ```
+
+5. Execute `composer serve` e acesse [http://localhost:8000](http://localhost:8000). Use o e-mail informado no comando e a senha escolhida no terminal.
+
+## Estrutura do projeto
+
+| Pasta | Responsabilidade |
+| --- | --- |
+| `app/` | Telas, validações, consultas e regras de negócio |
+| `bootstrap/` | Inicialização, sessão e autorização |
+| `config/` | Configurações de banco e e-mail |
+| `database/` | Estrutura inicial e migrações |
+| `public/` | Entrada HTTP e recursos da interface |
+| `routes/` | Mapeamento das URLs |
+| `bin/` | Comandos de instalação, administração e notificações |
+| `tests/` | Testes de validação e integração |
+| `storage/` | Armazenamento local de backups, logs e configurações privadas |
+| `docs/` | Documentação técnica e operacional |
+
+## Testes
+
+Para executar as validações de entrada no ambiente Docker:
 
 ```sh
-php tests/validation.php
+docker compose exec app php tests/validation.php
 ```
 
-`composer test` também executa testes de integração que precisam de MySQL, extensão cURL e permissão para criar/remover um banco temporário. Execute-os em um ambiente de testes separado, nunca com credenciais de produção. As senhas e documentos presentes em `tests` são fixtures sintéticas usadas apenas pelo teste.
+Em uma instalação com PHP local, use `php tests/validation.php`.
 
-O GitHub Actions incluído verifica a sintaxe PHP e as validações de entrada a cada push e pull request. Ele não acessa banco real nem publica o sistema.
+O comando `composer test` executa também os testes de integração. Esse conjunto exige MySQL, a extensão PHP cURL e permissão para criar e remover um banco temporário. Execute-o em um ambiente de testes separado. As contas, documentos e senhas em `tests/` são dados sintéticos utilizados pelos testes.
 
-## Segurança e publicação
+O workflow do GitHub Actions verifica a sintaxe dos arquivos PHP e executa as validações de entrada a cada push e pull request.
 
-- [Como publicar esta pasta no GitHub](docs/PUBLICAR-NO-GITHUB.md)
+## Segurança e hospedagem
+
+A aplicação inclui controle de acesso por perfil, proteção CSRF, tratamento de sessão e consultas parametrizadas. Credenciais locais, logs e backups são ignorados pelo Git.
+
+A configuração Docker disponibiliza o site somente no computador local e mantém a porta do banco sem publicação. O envio de e-mails e a execução periódica da fila não são ativados automaticamente.
+
+O GitHub disponibiliza o código-fonte. Para oferecer uma demonstração acessível pela internet, é necessária uma hospedagem compatível com PHP, com raiz pública em `public/`, HTTPS e um banco separado contendo somente dados fictícios. Uma revisão de segurança é necessária antes dessa exposição.
+
+## Documentação
+
+- [Arquitetura e responsabilidades](docs/architecture.md)
+- [Instalação, segurança e operação](docs/operations.md)
 - [Política de segurança](SECURITY.md)
-- [Arquitetura](docs/architecture.md)
-- [Operação e instalação](docs/operations.md)
-
-A cópia inclui controles de sessão, perfis, proteção CSRF e consultas parametrizadas no código existente. A preparação para portfólio não substitui uma auditoria de segurança antes de exposição pública. Qualquer demonstração hospedada deve utilizar dados fictícios, banco independente e HTTPS.
