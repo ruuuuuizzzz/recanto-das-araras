@@ -1,0 +1,824 @@
+
+/* ==========================================
+   RECANTO DAS ARARAS
+   DASHBOARD 2026
+
+   Estilos exclusivos do Dashboard.
+   Não altera as outras telas do sistema.
+========================================== */
+
+
+/* ==========================================
+   1. ESTRUTURA PRINCIPAL
+========================================== */
+
+.dashboard-page .dash-content {
+    max-width: none;
+    min-width: 0;
+}
+
+.dashboard-page .dash-content > * {
+    max-width: 1360px;
+    width: 100%;
+}
+
+
+/* ==========================================
+   2. CABEÇALHO DO DASHBOARD
+========================================== */
+
+.dashboard-page .dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.dashboard-page .dash-header h1 {
+    font-size: clamp(24px, 2.4vw, 33px);
+    margin: 5px 0;
+}
+
+.dashboard-page .dash-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.dashboard-page .dash-header .eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+
+/* ==========================================
+   3. DATA E ATUALIZAÇÃO
+========================================== */
+
+.dashboard-page .dash-date {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+    padding: 12px 16px;
+
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    font-size: 12px;
+}
+
+.dashboard-page .dash-date span {
+    color: var(--text-muted);
+}
+
+.dashboard-page .dash-date button {
+    padding: 8px 12px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #e8f5ec;
+    color: #185938;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.dashboard-page .dash-date button:hover {
+    background: #d4ebdc;
+}
+
+
+/* ==========================================
+   4. INDICADORES PRINCIPAIS
+========================================== */
+
+.dashboard-page .dash-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+
+/* Cards dos indicadores */
+
+.dashboard-page .dash-stat {
+    min-width: 0;
+    padding: 21px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+    border-radius: 19px;
+
+    box-shadow: var(--shadow-sm);
+
+    text-decoration: none;
+    color: var(--text);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.dashboard-page .dash-stat:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* Cabeçalho dos indicadores */
+
+.dashboard-page .stat-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #526b60;
+}
+
+
+/* Ícones dos indicadores */
+
+.dashboard-page .stat-icon {
+    display: grid;
+    place-items: center;
+
+    width: 35px;
+    height: 35px;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #e8f5ec;
+    color: #237447;
+
+    font-size: 21px;
+}
+
+
+/* Números dos indicadores */
+
+.dashboard-page .dash-stat strong {
+    display: block;
+
+    margin: 15px 0 9px;
+
+    font-size: 36px;
+    line-height: 1.2;
+
+    color: #173d2b;
+}
+
+
+/* Texto inferior */
+
+.dashboard-page .dash-stat small {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+
+/* Indicador de atenção */
+
+.dashboard-page .stat-attention .stat-icon {
+    background: #fff3de;
+    color: #ad6a00;
+}
+
+.dashboard-page .stat-attention strong {
+    color: #b46b05;
+}
+
+
+/* ==========================================
+   5. PAINÉIS GERAIS
+========================================== */
+
+.dashboard-page .panel {
+    min-width: 0;
+    padding: 23px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+    border-radius: 19px;
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* Cabeçalho dos painéis */
+
+.dashboard-page .panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 14px;
+    margin-bottom: 19px;
+}
+
+.dashboard-page .panel-title h2 {
+    margin: 0 0 4px;
+    font-size: 18px;
+}
+
+.dashboard-page .panel-title p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+
+/* Links dos painéis */
+
+.dashboard-page .panel-title a,
+.dashboard-page .panel-link {
+    font-size: 12px;
+    font-weight: 700;
+
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.dashboard-page .panel-title a:hover,
+.dashboard-page .panel-link:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================
+   6. AÇÕES RÁPIDAS
+========================================== */
+
+.dashboard-page .dash-quick {
+    margin-bottom: 20px;
+}
+
+.dashboard-page .quick-links {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+
+/* Botões de ações rápidas */
+
+.dashboard-page .quick-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+    padding: 14px 10px;
+
+    border: 1px solid #dcece1;
+    border-radius: 12px;
+
+    background: #f6faf7;
+    color: #245b3c;
+
+    text-decoration: none;
+    text-align: center;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.dashboard-page .quick-links a:hover {
+    background: #e8f5ec;
+    transform: translateY(-2px);
+}
+
+.dashboard-page .quick-links span {
+    font-size: 19px;
+}
+
+
+/* ==========================================
+   7. COLUNAS DO DASHBOARD
+
+   Esquerda: Atividade recente
+   Direita: Últimos avisos
+========================================== */
+
+.dashboard-page .dash-columns {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(0, 1fr);
+
+    gap: 20px;
+
+    width: 100%;
+    margin-bottom: 20px;
+
+    align-items: stretch;
+}
+
+
+/* Painéis dentro das colunas */
+
+.dashboard-page .dash-columns > .panel {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   8. ATIVIDADE RECENTE
+========================================== */
+
+.dashboard-page .activity-list {
+    width: 100%;
+}
+
+
+/* Cada atividade */
+
+.dashboard-page .activity-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+    padding: 13px 0;
+
+    border-bottom: 1px solid #edf2ee;
+}
+
+.dashboard-page .activity-item:last-child {
+    border-bottom: none;
+}
+
+
+/* Ícone de cada atividade */
+
+.dashboard-page .activity-symbol {
+    display: grid;
+    place-items: center;
+
+    width: 37px;
+    height: 37px;
+
+    flex: 0 0 37px;
+
+    border-radius: 11px;
+
+    font-size: 20px;
+}
+
+
+/* Encomendas */
+
+.dashboard-page .symbol-box {
+    background: #fff3df;
+    color: #b8760a;
+}
+
+
+/* Visitantes */
+
+.dashboard-page .symbol-person {
+    background: #e9f5ed;
+    color: #237447;
+}
+
+
+/* Moradores */
+
+.dashboard-page .symbol-resident {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+
+/* Veículos */
+
+.dashboard-page .symbol-vehicle {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+
+/* Outros registros */
+
+.dashboard-page .symbol-default {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+
+/* Informações das atividades */
+
+.dashboard-page .activity-text {
+    min-width: 0;
+    flex: 1;
+}
+
+.dashboard-page .activity-text strong {
+    display: block;
+
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-page .activity-text small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+
+/* Data da atividade */
+
+.dashboard-page .activity-item time {
+    font-size: 11px;
+    color: var(--text-muted);
+
+    white-space: nowrap;
+}
+
+
+/* Link inferior */
+
+.dashboard-page .panel-link {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+
+/* ==========================================
+   9. ÚLTIMOS AVISOS
+========================================== */
+
+.dashboard-page .notice-list {
+    width: 100%;
+}
+
+
+/* Cada aviso */
+
+.dashboard-page .notice-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+    padding: 13px 0;
+
+    border-bottom: 1px solid #edf2ee;
+}
+
+.dashboard-page .notice-item:last-child {
+    border-bottom: none;
+}
+
+
+/* Informações dos avisos */
+
+.dashboard-page .notice-item > div {
+    min-width: 0;
+    flex: 1;
+}
+
+.dashboard-page .notice-item strong {
+    display: block;
+
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-page .notice-item small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+
+/* Etiquetas de urgência */
+
+.dashboard-page .notice-tag {
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    background: #e9f5ed;
+    color: #267048;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* Aviso urgente */
+
+.dashboard-page .urgency-urgente {
+    background: #fee9e7;
+    color: #bb3832;
+}
+
+
+/* Aviso de manutenção */
+
+.dashboard-page .urgency-manutencao {
+    background: #fff1da;
+    color: #986200;
+}
+
+
+/* Aviso de evento */
+
+.dashboard-page .urgency-evento {
+    background: #e9edff;
+    color: #4e59a8;
+}
+
+
+/* ==========================================
+   10. ESTADO VAZIO
+========================================== */
+
+.dashboard-page .empty-state {
+    padding: 18px 0;
+
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   11. GRÁFICO DE MOVIMENTAÇÃO
+========================================== */
+
+/* Legenda */
+
+.dashboard-page .chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.dashboard-page .chart-legend span {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.dashboard-page .chart-legend i {
+    display: inline-block;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 3px;
+}
+
+
+/* Cores da legenda */
+
+.dashboard-page .legend-visit {
+    background: #237447;
+}
+
+.dashboard-page .legend-package {
+    background: #dfaa50;
+}
+
+
+/* Área principal do gráfico */
+
+.dashboard-page .dash-chart {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    align-items: end;
+
+    gap: 14px;
+
+    min-height: 205px;
+    padding: 16px 4px 0;
+
+    border-bottom: 1px solid #e4ebe6;
+}
+
+
+/* Cada dia do gráfico */
+
+.dashboard-page .chart-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+
+    height: 190px;
+    gap: 7px;
+}
+
+
+/* Container das barras */
+
+.dashboard-page .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    gap: 5px;
+
+    height: 155px;
+    width: 100%;
+}
+
+
+/* Barras */
+
+.dashboard-page .chart-bar {
+    width: min(34%, 28px);
+    min-height: 3px;
+
+    border-radius: 6px 6px 0 0;
+}
+
+
+/* Barra de visitantes */
+
+.dashboard-page .chart-bar.visit {
+    background: #237447;
+}
+
+
+/* Barra de encomendas */
+
+.dashboard-page .chart-bar.package {
+    background: #dfaa50;
+}
+
+
+/* Identificação dos dias */
+
+.dashboard-page .chart-label {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+
+/* ==========================================
+   12. RODAPÉ
+========================================== */
+
+.dashboard-page .dash-footer {
+    padding: 24px 0 0;
+
+    text-align: center;
+
+    font-size: 12px;
+    color: #82958b;
+}
+
+
+/* ==========================================
+   13. RESPONSIVIDADE
+   TELAS ATÉ 1200px
+========================================== */
+
+@media (max-width: 1200px) {
+
+    /* Indicadores em duas colunas */
+
+    .dashboard-page .dash-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    /* Ações rápidas em três colunas */
+
+    .dashboard-page .quick-links {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ==========================================
+   14. RESPONSIVIDADE
+   TABLETS - ATÉ 850px
+========================================== */
+
+@media (max-width: 850px) {
+
+    /* Painéis passam para uma coluna */
+
+    .dashboard-page .dash-columns {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* Cabeçalho vertical */
+
+    .dashboard-page .dash-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+
+/* ==========================================
+   15. RESPONSIVIDADE
+   CELULARES - ATÉ 520px
+========================================== */
+
+@media (max-width: 520px) {
+
+    /* Indicadores */
+
+    .dashboard-page .dash-stats {
+        gap: 10px;
+    }
+
+    .dashboard-page .dash-stat {
+        padding: 15px;
+    }
+
+    .dashboard-page .dash-stat strong {
+        font-size: 29px;
+    }
+
+    .dashboard-page .stat-top {
+        font-size: 11px;
+    }
+
+
+    /* Ações rápidas */
+
+    .dashboard-page .quick-links {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    /* Painéis */
+
+    .dashboard-page .panel {
+        padding: 17px;
+    }
+
+
+    /* Data e atualização */
+
+    .dashboard-page .dash-date {
+        width: 100%;
+    }
+
+
+    /* Atividades recentes */
+
+    .dashboard-page .activity-item time {
+        font-size: 10px;
+    }
+
+
+    /* Gráfico */
+
+    .dashboard-page .chart-legend {
+        gap: 8px;
+    }
+
+}

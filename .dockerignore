@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+!.env.example
+vendor
+storage/backups/*
+storage/private/*
+storage/logs/*
+!storage/backups/.gitkeep
+!storage/private/.gitkeep
+!storage/logs/.gitkeep
+*.sql
+*.log
+*.zip

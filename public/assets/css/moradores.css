@@ -1,0 +1,323 @@
+
+.content--moradores {
+    display: block;
+    padding: 60px 30px 30px;
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    width: calc(100% - var(--sidebar-width));
+    box-sizing: border-box;
+}
+
+.app {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+.container {
+    width: 100%;
+    max-width: var(--content-max);
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+}
+
+
+.header {
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 20px;
+    color: var(--text);
+}
+
+.header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+
+.blocos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.buscaMoradores {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.buscaMoradores input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--primary);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--surface);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.buscaMoradores input:focus {
+    outline: none;
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(46, 134, 78, 0.15);
+}
+
+.buscaMoradores button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--primary);
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color var(--transition);
+}
+
+.buscaMoradores button:hover {
+    background: var(--primary-dark);
+}
+
+.bloco {
+    padding: 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: border-color var(--transition), color var(--transition), background-color var(--transition);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.bloco:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.bloco.ativo {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+
+.lista {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    max-height: 220px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+
+.morador {
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.morador:last-child {
+    border-bottom: none;
+}
+
+.morador:hover {
+    background-color: #f0fdf4;
+}
+
+.morador-nome {
+    flex: 1;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.morador-direita {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 10px;
+}
+
+.morador-apto {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #fff;
+    background: var(--primary);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.btn-encomenda {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f6ff;
+    border: 1.5px solid #d0d8ff;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn-encomenda img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+}
+
+.btn-encomenda:hover {
+    background: #e0e8ff;
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+}
+
+.empty {
+    padding: 18px;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form a {
+    text-align: center;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    background: var(--primary);
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color var(--transition);
+    display: block;
+}
+
+.form a:hover {
+    background: var(--primary-dark);
+}
+
+.btn-veiculo {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f6ff;
+    border: 1.5px solid #d0d8ff;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn-veiculo img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+}
+
+.btn-veiculo:hover {
+    background: #e0e8ff;
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+}
+
+.btn-visitante {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f6ff;
+    border: 1.5px solid #d0d8ff;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn-visitante img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+}
+
+.btn-visitante:hover {
+    background: #e0e8ff;
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .content--moradores {
+        padding-top: 20px;
+        margin-left: 0;
+        align-items: flex-start;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+}
+
+/* Busca e conteúdo ocupam a mesma largura do painel */
+.content--moradores .app,
+.content--moradores .container,
+.content--moradores .buscaMoradores { width: 100%; min-width: 0; }
+.content--moradores .buscaMoradores input { flex: 1 1 auto; min-width: 0; }
+@media (max-width: 768px) {
+    .content--moradores { width: 100%; padding: 20px 16px; }
+    .content--moradores .container { padding: 20px 16px; }
+}
+@media (max-width: 480px) {
+    .content--moradores .blocos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .content--moradores .buscaMoradores { flex-wrap: wrap; }
+    .content--moradores .buscaMoradores input { flex-basis: 100%; }
+}

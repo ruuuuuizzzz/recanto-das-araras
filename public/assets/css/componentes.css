@@ -1,0 +1,18 @@
+/* Shared visual consistency — loaded after module-specific CSS */
+:root { --ui-gap: 12px; --ui-card-radius: var(--radius-lg); --ui-control-height: 36px; }
+:is(.campoEncomendas,.campoVeiculos,.campoVisitantes,.campoAvisos,.resumoGeral,.cards,.visitantes-container,.containerAvisosDashboard) { min-width: 0; }
+:is(.resumoGeral,.cards) > * { min-width: 0; }
+:is(.resumoCard,.grupoMorador,.cardAvisos,.cardManutencao,.visitante-card,.itemAvisoDash) { border-radius: var(--ui-card-radius); }
+:is(.btnBuscar,.btnAlterar,.btnExcluir,.btnDesativar,.btnDesfazer,.btnVerTodos,.btnFiltroStatus,.btn-primary,.btn-danger,.btn-ghost,.buscar,.salvar,.cancelar,.excluir) { font-family: var(--font-main); font-weight: 600; text-decoration: none; line-height: 1.35; text-align: center; transition: background-color var(--transition), box-shadow var(--transition), transform var(--transition); }
+:is(button,a):is(.btnBuscar,.btnAlterar,.btnExcluir,.btnDesativar,.btnDesfazer,.btnVerTodos,.btn-primary,.btn-danger,.btn-ghost) { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: var(--ui-control-height); }
+:is(button,a):is(.btnBuscar,.btnAlterar,.btnExcluir,.btnDesativar,.btnDesfazer,.btnVerTodos,.btn-primary,.btn-danger,.btn-ghost):focus-visible { outline: 2px solid var(--primary-dark); outline-offset: 3px; }
+:is(.campoBusca,.buscaMoradores,.filtro,.filtroStatus,.filtroBlocos,.visitantes-search) { min-width: 0; }
+:is(.campoBusca,.buscaMoradores,.visitantes-search) input { min-width: 0; max-width: 100%; }
+:is(.campoBusca,.buscaMoradores,.visitantes-search) input:focus-visible, :is(.campo,.visitantes-form,.form-row) :is(input,textarea,select):focus-visible { outline: 2px solid var(--border-focus); outline-offset: 1px; }
+:is(.grupoHeader,.grupoIdentidade,.grupoInfo,.itemTexto,.itemEncomendaInfo,.itemVeiculoInfo) { min-width: 0; }
+:is(.itemTexto,.grupoInfo) :is(strong,span,h3) { overflow-wrap: anywhere; }
+.visitantes-table-wrapper { max-width: 100%; overflow-x: auto; }
+.visitantes-table { border-collapse: collapse; }
+.visitantes-table :is(th,td) { vertical-align: middle; }
+@media (max-width: 768px) { :is(.resumoGeral,.cards) { gap: 12px; } :is(.itemAcoes,.acoesAvisos,.acoesManutencao) { flex-wrap: wrap; gap: 8px; } }
+@media (max-width: 480px) { :is(.resumoGeral,.cards) { grid-template-columns: repeat(auto-fit,minmax(min(100%,180px),1fr)); } :is(.filtro,.filtroStatus,.filtroBlocos,.visitantes-actions) { flex-wrap: wrap; } }

@@ -1,0 +1,124 @@
+/* ===== Filtro por nível de urgência (mesmo padrão de encomendas/visitantes) ===== */
+.filtro {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+a.btnFiltroStatus {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+
+a.btnFiltroStatus:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+a.btnFiltroStatus.ativo {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+/* ===== Resumo geral (mesmo padrão de encomendas/visitantes/veiculos) ===== */
+.resumoGeral {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.resumoCard {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.resumoCard .numero {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+}
+
+.resumoCard .rotulo {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.resumoCard.urgente .numero { color: #b91c1c; }
+.resumoCard.atencao .numero { color: #92400e; }
+.resumoCard.tranquilo .numero { color: #065f46; }
+
+/* ===== Estado vazio ===== */
+.semAvisos {
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== Cards de aviso com indicação de urgência ===== */
+.cardAvisos {
+    border-top: 4px solid var(--border);
+}
+
+.cardAvisos.nivel-alta  { border-top-color: #ef4444; }
+.cardAvisos.nivel-media { border-top-color: #f59e0b; }
+.cardAvisos.nivel-baixa { border-top-color: #10b981; }
+
+.infoAvisos .cabecalhoAviso {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.infoAvisos h3 {
+    font-size: 15px;
+    color: var(--text);
+    margin: 0;
+}
+
+.tagUrgencia {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.nivel-alta  .tagUrgencia { background: #fee2e2; color: #b91c1c; }
+.nivel-media .tagUrgencia { background: #fef3c7; color: #92400e; }
+.nivel-baixa .tagUrgencia { background: #d1fae5; color: #065f46; }
+
+.infoAvisos .dataAviso {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+    .resumoGeral {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

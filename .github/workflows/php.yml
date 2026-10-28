@@ -1,0 +1,13 @@
+name: PHP
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verificar sintaxe PHP
+        run: find app bootstrap config database public routes bin tests -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Validar regras de entrada
+        run: php tests/validation.php

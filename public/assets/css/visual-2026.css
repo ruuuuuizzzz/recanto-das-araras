@@ -1,0 +1,111 @@
+/* RECANTO DAS ARARAS — Identidade visual 2026
+   Camada final de apresentação. Não altera lógica nem dados. */
+:root {
+ --primary:#237447; --primary-dark:#185938; --primary-hover:#1c6540; --primary-light:#e8f5ec;
+ --bg:#f4f7f5; --surface:#fff; --text:#18302a; --text-muted:#63776f; --text-light:#87998f;
+ --border:#dfe9e3; --border-input:#ccdcd1; --border-focus:#237447;
+ --shadow-sm:0 2px 8px rgba(20,60,42,.045); --shadow-md:0 8px 28px rgba(20,60,42,.075);
+ --shadow-lg:0 18px 48px rgba(20,60,42,.13); --radius-sm:10px; --radius-md:14px; --radius-lg:20px;
+ --sidebar-width:244px; --content-max:1360px; --content-padding:clamp(18px,3vw,42px);
+ --font-main:'Roboto',Arial,sans-serif; --font-form:'Roboto',Arial,sans-serif;
+}
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:var(--font-main); line-height:1.5; }
+h1,h2,h3 { letter-spacing:-.025em; }
+h1 { font-size:clamp(23px,2.3vw,32px); font-weight:700; }
+h2 { font-size:clamp(18px,1.6vw,23px); }
+p { line-height:1.6; }
+.content { width:calc(100% - var(--sidebar-width)); margin-left:var(--sidebar-width); padding:clamp(24px,3vw,42px) var(--content-padding) 56px; min-height:100vh; }
+.content > * { max-width:var(--content-max); }
+.subtitle { margin-bottom:28px; }
+.subtitle h1 { font-size:clamp(24px,2.5vw,32px); margin-bottom:5px; }
+.subtitle p,.header p { color:var(--text-muted); }
+.sidebar { width:var(--sidebar-width); flex:0 0 var(--sidebar-width); }
+.sidebar .abas { width:var(--sidebar-width); padding:27px 16px 18px; background:linear-gradient(165deg,#24764a 0%,#185b3a 70%,#134b31 100%); box-shadow:5px 0 25px rgba(16,65,40,.08); gap:3px; }
+.sidebar .logo { padding:0 8px 19px; margin-bottom:17px; border-bottom:1px solid rgba(255,255,255,.16); }
+.sidebar .logo img { width:50px; height:50px; object-fit:contain; flex-shrink:0; }
+.sidebar .logo h2 { font-size:15px; line-height:1.35; letter-spacing:-.01em; }
+.sidebar a { border-radius:11px; padding:12px 15px; margin:0 0 3px; font-size:14px; font-weight:500; color:rgba(255,255,255,.81); }
+.sidebar a:hover,.sidebar a.active { background:rgba(255,255,255,.16); color:white; padding-left:15px; }
+.sidebar a.active { background:rgba(255,255,255,.21); box-shadow:inset 3px 0 #c4ebcd; font-weight:700; }
+.sidebar .user { margin-top:auto; padding:18px 8px 3px; border-color:rgba(255,255,255,.16); }
+.sidebar .user img { width:34px; height:34px; object-fit:contain; }
+.sidebar .user h4 { font-size:13px; }
+:is(.container,.resumoCard,.cardAvisos,.cardManutencao,.visitante-card,.grupoMorador,.itemAvisoDash) { border-color:var(--border); }
+.content--moradores { padding:clamp(24px,3vw,42px) var(--content-padding); width:calc(100% - var(--sidebar-width)); margin-left:var(--sidebar-width); min-height:100vh; }
+.content--moradores .app { width:100%; justify-content:flex-start; }
+.content--moradores .container { max-width:var(--content-max); border:1px solid var(--border); border-radius:22px; padding:clamp(20px,3vw,36px); box-shadow:var(--shadow-md); }
+.content--moradores .header { margin-bottom:24px; }
+.content--moradores .header h1 { font-size:clamp(23px,2.2vw,30px); }
+.content--moradores .buscaMoradores { width:100%; min-width:0; }
+.content--moradores .buscaMoradores input { flex:1; min-width:0; }
+:is(.cards a,.cards div,.resumoCard,.cardAvisos,.cardManutencao,.visitante-card,.grupoMorador,.itemAvisoDash) { border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow-sm); }
+.cards { gap:16px; }
+.cards a,.cards div { padding:22px; }
+.cards a:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); }
+.resumoCard { padding:19px; }
+.resumoCard .numero { color:var(--primary-dark); font-size:30px; }
+:is(.campoBusca,.buscaMoradores,.filtroStatus,.filtro,.filtroBlocos) { gap:10px; }
+:is(input,select,textarea) { accent-color:var(--primary); }
+:is(input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],input[type=password],input[type=search],select,textarea) { border:1px solid var(--border-input); border-radius:11px; background:#fff; min-height:42px; color:var(--text); transition:border-color .2s ease,box-shadow .2s ease; }
+:is(input,select,textarea):focus { border-color:var(--primary); outline:none; box-shadow:0 0 0 3px rgba(35,116,71,.12); }
+input::placeholder,textarea::placeholder { color:#91a198; }
+:is(button,.campoAdicionar a,.form a,.btnBuscar,.btnFiltroStatus) { transition:background-color .2s ease,box-shadow .2s ease,transform .2s ease; }
+:is(button,.campoAdicionar a,.form a):focus-visible { outline:3px solid #96d4ab; outline-offset:3px; }
+.campoAdicionar a { border-radius:11px; padding:11px 18px; font-weight:700; box-shadow:0 5px 15px rgba(35,116,71,.12); }
+a.btnFiltroStatus { border-radius:999px; padding:9px 15px; }
+:is(.btnBuscar,.btnAlterar,.btnExcluir,.btnDesativar,.btnDesfazer,.btnVerTodos) { border-radius:10px; }
+:is(.morador,.itemEncomenda,.itemVeiculo,.itemVisitante) { border-color:var(--border); }
+:is(.visitantes-container) { background:transparent; padding:0; min-height:0; }
+.visitantes-table-wrapper { background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow-x:auto; box-shadow:var(--shadow-sm); }
+.visitantes-table { width:100%; }
+.visitantes-table th { background:#f0f6f2; color:#49665a; font-size:12px; text-transform:uppercase; letter-spacing:.045em; }
+.visitantes-table :is(th,td) { padding:13px 16px; border-bottom:1px solid var(--border); }
+.visitantes-table tr:hover td { background:#f8fbf9; }
+body:has(> .container):not(:has(.sidebar)) { background:radial-gradient(circle at 8% 8%,#3a9160 0%,transparent 36%),linear-gradient(135deg,#185b3a,#237447); min-height:100vh; padding:clamp(18px,4vw,48px); }
+body:has(> .container):not(:has(.sidebar)) > .container { width:min(100%,560px); max-width:560px; border-radius:22px; padding:clamp(22px,3vw,36px); border:1px solid rgba(255,255,255,.65); box-shadow:0 24px 70px rgba(8,40,24,.24); }
+body:has(> .container):not(:has(.sidebar)) h2 { font-size:24px; }
+body:has(> .container):not(:has(.sidebar)) label { color:#4e655b; }
+body:has(> .container):not(:has(.sidebar)) :is(input,select,textarea) { min-height:44px; }
+@media(max-width:1000px) and (min-width:769px) { :root { --sidebar-width:208px; } .sidebar .abas { padding-inline:10px; } .sidebar .logo h2 { font-size:13px; } }
+@media(max-width:768px) {
+ body:has(.sidebar) { display:block; }
+ .sidebar { width:100%; height:auto; display:block; }
+ .sidebar .abas { position:relative; width:100%; height:auto; inset:auto; padding:14px 16px; flex-direction:row; flex-wrap:wrap; gap:5px; }
+ .sidebar .logo { width:100%; margin:0 0 6px; padding:0 0 12px; }
+ .sidebar .logo img { width:40px; height:40px; }
+ .sidebar a { padding:9px 12px; font-size:13px; margin:0; }
+ .sidebar a:hover,.sidebar a.active { padding-left:12px; }
+ .sidebar .user { width:100%; margin-top:8px; padding:9px 0 0; }
+ .content,.content--moradores { width:100%; margin-left:0; padding:22px 16px 36px; }
+ .content--moradores .container { width:100%; }
+ .cardgeral { flex-direction:column; gap:20px; }
+ .cardgeral > * { width:100%; min-width:0; }
+}
+@media(max-width:520px) {
+ .content--moradores .container { padding:18px 14px; }
+ .content--moradores .blocos { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .campoBusca { flex-wrap:wrap; }
+ .campoBusca input { width:100%; flex:1 1 100%; }
+ .linha { flex-wrap:wrap; }
+ .linha .campo { flex:1 1 100%; }
+ .cards { gap:12px; }
+ .cards a,.cards div { min-width:min(100%,170px); }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none!important; animation:none!important; scroll-behavior:auto!important; } }
+
+/* CORREÇÃO DE ALINHAMENTO — a sidebar já ocupa largura no flex do body.
+   Evita somar novamente 244px de margin-left ao conteúdo. */
+@media (min-width: 769px) {
+  body:has(> .sidebar) > .content,
+  body:has(> .sidebar) > .content--moradores {
+    margin-left: 0;
+    width: auto;
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+  body:has(> .sidebar) > .content--moradores .app {
+    width: 100%;
+    min-width: 0;
+  }
+}

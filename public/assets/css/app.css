@@ -1,0 +1,43 @@
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#193e32;background:#f4f7f5}button,input,select,textarea{font:inherit}button,.pagination a{cursor:pointer;padding:10px 16px;border-radius:6px;border:1px solid #698878;background:#fff;color:#193e32}a{color:#176648}input,select,textarea{padding:10px;border:1px solid #81958b;border-radius:5px}label{display:grid;gap:6px;margin:14px 0}.auth{display:grid;place-items:center;min-height:95vh}.auth main{background:white;max-width:440px;width:100%;padding:30px;border-radius:12px;box-shadow:0 4px 25px #193e3215}.auth button{background:#176648;color:white;width:100%}.pagination{padding:20px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}.app-alert{padding:16px;background:#fff0cf;border:1px solid #9a6f10;border-radius:6px;margin:16px;position:relative;z-index:2}.field-error{color:#a02020;font-size:.9rem}.admin-main{max-width:1000px;margin:30px auto;padding:24px;background:white;border-radius:12px}.admin-main table{border-collapse:collapse;width:100%}.admin-main td,.admin-main th{text-align:left;padding:10px;border-bottom:1px solid #ccc}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[role=button]:focus-visible{outline:3px solid #c97618;outline-offset:3px}.sidebar .user{flex-wrap:wrap}.sidebar .user form{margin:0}.sidebar .abas{overflow-y:auto;max-height:100vh}@media(max-width:700px){.admin-main{padding:12px;overflow-x:auto}.sidebar .abas{max-height:none}}
+
+.sidebar .user.account-panel {
+    display:block;
+    flex-shrink:0;
+    margin-top:auto;
+    padding:18px 0 2px;
+    border-top:1px solid rgba(255,255,255,.16);
+    color:#fff;
+}
+.account-identity { display:flex; align-items:center; gap:11px; padding:0 9px 15px; min-width:0; }
+.account-avatar { display:grid; place-items:center; width:37px; height:37px; flex-shrink:0; border-radius:12px; background:rgba(220,248,229,.14); border:1px solid rgba(220,248,229,.18); color:#e1f5e7; font-size:15px; font-weight:700; }
+.account-details { min-width:0; }
+.account-details strong { display:block; font-size:12px; font-weight:600; line-height:1.5; color:#f2fbf5; overflow-wrap:anywhere; }
+.account-details small { display:block; margin-top:2px; font-size:10px; color:#a9cbb7; line-height:1.5; }
+.account-actions { display:flex; align-items:stretch; gap:7px; padding:0 3px; }
+.sidebar .account-actions .account-link,.sidebar .account-actions .account-logout {
+    display:flex; align-items:center; justify-content:center; gap:7px;
+    min-height:38px; margin:0; padding:9px 10px;
+    color:#e0f0e5; font-family:inherit; font-size:11px; font-weight:500; line-height:1.3;
+    text-decoration:none; border:1px solid rgba(255,255,255,.13); border-radius:9px; background:rgba(255,255,255,.06);
+    transition:background-color .2s,border-color .2s;
+}
+.sidebar .account-actions .account-link { flex:1; }
+.sidebar .account-actions form { display:flex; flex-shrink:0; margin:0; }
+.account-actions svg { width:15px; height:15px; flex-shrink:0; }
+.sidebar .account-actions .account-link:hover { background:rgba(255,255,255,.13); border-color:rgba(255,255,255,.25); }
+.sidebar .account-actions .account-logout { color:#f1d6d1; }
+.sidebar .account-actions .account-logout:hover { background:rgba(237,166,151,.13); border-color:rgba(237,166,151,.35); }
+@media(max-width:768px) { .sidebar .user.account-panel { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:14px; margin-top:8px; padding-top:12px; } .account-identity { padding:0; } .account-actions { min-width:190px; } }
+.content > .app-alert,
+.content--moradores > .app-alert,
+.container > .app-alert {
+    margin:0 0 20px;
+    padding:12px 16px;
+    border:1px solid #cce2d3;
+    border-radius:10px;
+    background:#edf7f0;
+    color:#286441;
+    font-size:14px;
+    line-height:1.5;
+    overflow-wrap:anywhere;
+}

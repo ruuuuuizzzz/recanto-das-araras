@@ -1,0 +1,85 @@
+
+.btnBuscar {
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.btnBuscar:hover {
+    background-color: var(--primary-dark);
+}
+
+.btnLimpar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 4px;
+    transition: color var(--transition);
+}
+
+.btnLimpar:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+
+.btnAlterar {
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.btnAlterar:hover {
+    background-color: var(--primary-dark);
+}
+
+.btnExcluir {
+    background-color: #a12d2d;
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btnExcluir:hover {
+    background-color: #8b2020;
+}
+
+.btnDesativar {
+    background-color: var(--danger);
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btnDesativar:hover {
+    background-color: var(--danger-dark);
+}

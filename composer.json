@@ -1,0 +1,14 @@
+{
+    "name": "recanto-das-araras/gestao-condominial",
+    "description": "Sistema de gestao condominial e portaria em PHP.",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^7.1"
+    },
+    "scripts": {
+        "test": ["@php tests/validation.php", "@php tests/integration.php"],
+        "serve": "@php -S 127.0.0.1:8000 -t public public/index.php",
+        "db:install": "@php bin/install.php",
+        "db:migrate": "@php bin/migrate.php"
+    }
+}

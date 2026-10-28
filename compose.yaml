@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8080:80"
+    environment:
+      APP_BASE_URL: /
+      DB_HOST: db
+      DB_NAME: recanto_demo
+      DB_USER: recanto_app
+      DB_PASS: ${DB_PASS:?Configure DB_PASS no arquivo .env}
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: recanto_demo
+      MYSQL_USER: recanto_app
+      MYSQL_PASSWORD: ${DB_PASS:?Configure DB_PASS no arquivo .env}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS:?Configure DB_ROOT_PASS no arquivo .env}
+    volumes:
+      - demo_database:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+volumes:
+  demo_database:
