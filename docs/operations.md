@@ -15,7 +15,7 @@ O Apache deve permitir `.htaccess` (`AllowOverride All`, `mod_rewrite` e `mod_au
 
 ## Perfis e operações
 
-Portaria consulta as listagens, cadastra/edita visitantes e encomendas e registra entrada, saída e retirada. Administração também gerencia moradores, veículos, avisos, exclusões e usuários, além de consultar auditoria, pendências e notificações. Uma sessão inativa expira após 30 minutos. Usuários desativados perdem acesso na próxima requisição. Há limite de tentativas de login por IP e e-mail.
+Portaria consulta as listagens, cadastra/edita visitantes e encomendas e registra entrada, saída e retirada. Administração também gerencia moradores, veículos, avisos, exclusões e usuários, além de consultar pendências. As páginas de auditoria e notificações não são disponibilizadas nesta versão; os registros internos e a fila de e-mail permanecem em funcionamento. Uma sessão inativa expira após 30 minutos. Usuários desativados perdem acesso na próxima requisição. Há limite de tentativas de login por IP e e-mail.
 
 Todas as operações de escrita exigem POST e CSRF. Exclusões de moradores com vínculos são bloqueadas para preservar os registros associados. A auditoria guarda operador, horário, registro, campos alterados e transições de status, sem copiar documentos ou senhas. O status atual de visitantes e encomendas fica no registro; a sequência de transições fica no histórico.
 
@@ -33,7 +33,7 @@ O agendador utiliza `bin/process-notifications.ps1`, que carrega a configuraçã
 
 Se alguma credencial for exposta, revogue-a diretamente no provedor; removê-la do arquivo não a invalida. Configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_SECURE` (`tls`), `REMETENTE_EMAIL` e opcionalmente `REMETENTE_NOME`. Nenhuma credencial SMTP é gravada no repositório. A aplicação lê variáveis de ambiente; ela não carrega arquivos .env automaticamente.
 
-Execute `C:\xampp\php\php.exe bin\process-notifications.php` periodicamente, por exemplo a cada minuto no Agendador de Tarefas do Windows, com as mesmas variáveis de ambiente. Cada execução processa até 50 mensagens. O script verifica a configuração antes de consumir a fila, faz até cinco tentativas com espera crescente e permite reagendamento pela tela Notificações. Cadastros, auditoria e inserção na fila são confirmados na mesma transação. Repetir uma transição de status já aplicada não gera outra mensagem. O worker usa bloqueio e recupera reservas expiradas; uma interrupção após a aceitação pelo SMTP pode resultar em reenvio, pois SMTP não garante entrega exatamente uma vez.
+Execute `C:\xampp\php\php.exe bin\process-notifications.php` periodicamente, por exemplo a cada minuto no Agendador de Tarefas do Windows, com as mesmas variáveis de ambiente. Cada execução processa até 50 mensagens. O script verifica a configuração antes de consumir a fila, faz até cinco tentativas com espera crescente e mantém os registros da fila para acompanhamento operacional. Cadastros, auditoria e inserção na fila são confirmados na mesma transação. Repetir uma transição de status já aplicada não gera outra mensagem. O worker usa bloqueio e recupera reservas expiradas; uma interrupção após a aceitação pelo SMTP pode resultar em reenvio, pois SMTP não garante entrega exatamente uma vez.
 
 As notificações guardam o destinatário selecionado no momento da operação. Dados de retirada e horários anteriores à migração não são inventados. Alterações na fila não enviam e-mails durante a requisição do usuário.
 

@@ -2,7 +2,7 @@
 
 Sistema web de gestão condominial para organizar a rotina de portaria e administração: moradores, veículos, visitantes, encomendas e avisos em um único painel.
 
-Desenvolvido em **PHP, MySQL, JavaScript e CSS**, o projeto inclui perfis de acesso, auditoria de operações e processamento de notificações por e-mail.
+Desenvolvido em **PHP, MySQL, JavaScript e CSS**, o projeto inclui perfis de acesso para administração e portaria.
 
 > Este repositório é uma versão de portfólio. A instalação utiliza um banco independente, inicialmente vazio, sem dados reais de moradores. Para testar, execute o projeto localmente seguindo as instruções abaixo.
 
@@ -13,8 +13,6 @@ Desenvolvido em **PHP, MySQL, JavaScript e CSS**, o projeto inclui perfis de ace
 - **Encomendas:** registro de recebimento e acompanhamento de retirada.
 - **Avisos:** publicação de comunicados com nível de urgência.
 - **Usuários:** perfis de administração e portaria, ativação de acessos e alteração de senha.
-- **Auditoria:** histórico de operações e transições de status.
-- **Notificações:** fila de envio de e-mails com processamento separado das requisições web.
 
 ## Tecnologias
 

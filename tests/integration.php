@@ -92,14 +92,14 @@ try {
     [$status]=request('/crud/salvar_veiculo.php',$car);expect($status===302,'Veículo cadastrado');
     request('/crud/salvar_veiculo.php',$car);expect((int)$db->query('SELECT COUNT(*) n FROM veiculos')->fetch_assoc()['n']===1,'Placa duplicada bloqueada');
     request('/crud/salvar_avisos.php',['csrf'=>$token,'id'=>0,'titulo'=>'Aviso teste','descricao'=>'Descrição','nivel_urgencia'=>'alta','data_aviso'=>'2026-10-25']);
-    foreach(['/index.php','/telas/telasPrincipais/moradores.php','/telas/telasPrincipais/encomendas.php','/telas/telasPrincipais/visitantes.php','/telas/telasPrincipais/veiculos.php','/telas/telasPrincipais/avisos.php','/telas/telasCadastro/cadastro_encomenda.php?id='.$pid,'/telas/telasCadastro/cadastro_visitante.php?id='.$vid,'/telas/telasCadastro/cadastro_veiculo.php?id=1','/usuarios.php','/auditoria.php','/notificacoes.php','/pendencias.php'] as $path) {[$status,$body]=request($path);expect($status===200 && strpos($body,'Ocorreu um erro interno')===false,'Tela '.$path);}
+    foreach(['/index.php','/telas/telasPrincipais/moradores.php','/telas/telasPrincipais/encomendas.php','/telas/telasPrincipais/visitantes.php','/telas/telasPrincipais/veiculos.php','/telas/telasPrincipais/avisos.php','/telas/telasCadastro/cadastro_encomenda.php?id='.$pid,'/telas/telasCadastro/cadastro_visitante.php?id='.$vid,'/telas/telasCadastro/cadastro_veiculo.php?id=1','/usuarios.php','/pendencias.php'] as $path) {[$status,$body]=request($path);expect($status===200 && strpos($body,'Ocorreu um erro interno')===false,'Tela '.$path);}
     [$status]=request('/telas/telasCadastro/cadastro_visitante.php?id=999999');expect($status===404,'Edição inexistente retorna 404');
     [$status,$body]=request('/crud/getmoradores.php?bloco=1',null,true);$data=json_decode($body,true);expect($status===200 && count($data['moradores'])===1 && $data['moradores'][0]['bloco']==='1','Busca de moradores por bloco');
     for($i=0;$i<55;$i++)$db->query("INSERT INTO avisos(titulo,nivel_urgencia,data_aviso) VALUES ('Página $i','baixa','2026-10-25')");
     [, $body]=request('/telas/telasPrincipais/avisos.php');expect(strpos($body,'pagina=2')!==false,'Paginação oferece próxima página');
     [, $body]=request('/telas/telasPrincipais/avisos.php?pagina=2');expect(strpos($body,'pagina=1')!==false && strpos($body,'pagina=3')===false,'Última página limitada corretamente');
     $token=loginAs('portaria@example.com','Teste-seguro-2026!');
-    foreach(['/usuarios.php','/auditoria.php','/pendencias.php','/telas/telasCadastro/cadastro_morador.php'] as $path){[$status]=request($path);expect($status===403,'Portaria sem acesso a '.$path);}
+    foreach(['/usuarios.php','/pendencias.php','/telas/telasCadastro/cadastro_morador.php'] as $path){[$status]=request($path);expect($status===403,'Portaria sem acesso a '.$path);}
     [$status,$body]=request('/telas/telasPrincipais/moradores.php');
     expect($status===200 && strpos($body,'btnAdicionarMorador')===false,'Portaria consulta moradores sem botão de cadastro');
     [$status,$body]=request('/crud/getmoradores.php?bloco=1',null,true);$data=json_decode($body,true);
